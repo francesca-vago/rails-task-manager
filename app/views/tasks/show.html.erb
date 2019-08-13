@@ -1,17 +1,42 @@
-<h1><%= @task.title %></h1>
+<div class="container">
 
-<p><%= @task.details %></p>
+  <h1><%= @task.title %></h1>
 
-<% if @task.completed %>
-  <i class="far fa-check-circle"></i>
-  <p>This task is completed</p>
-<% else %>
-  <i class="far fa-circle"></i>
-  <p>This task it not yet completed</p>
-<% end %>
+  <div class="details">
+    <p><%= @task.details %></p>
+  </div>
 
-<%= link_to "Update", task_edit_path %>
-<%= link_to "Delete", task_path(@task),
-    method: :delete,
-    data: { confirm: "Are you sure?" }%>
-<%= link_to "Back to Tasks", tasks_path %>
+  <div>
+    <% if @task.completed %>
+    <p><i class="far fa-check-circle completed">This task is completed</i></p>
+    <% else %>
+    <p><i class="far fa-circle not-completed"></i>This task it not yet completed</p>
+    <% end %>
+  </div>
+
+  <div class="btn btn-warning">
+    <%= link_to task_edit_path do %>
+      <i class="fas fa-edit"></i>
+      <p>Update</p>
+    <% end %>
+  </div>
+
+  <div class="btn btn-danger">
+    <%= link_to task_path(@task),
+        method: :delete,
+        data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-trash"></i>
+        <p>Delete</p>
+    <% end %>
+  </div>
+
+  <div class="btn btn-dark">
+    <%= link_to tasks_path do %>
+      <i class="fas fa-home"></i>
+      <p>Back to Tasks</p>
+    <% end %>
+  </div>
+</div>
+
+
+
